@@ -1,0 +1,127 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{pdfpages}
+\usepackage{cite}
+\usepackage[margin=0.75in]{geometry}
+
+\usepackage{lipsum}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering \normalfont\scshape}
+
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{CSEE @ University Of Maryland Baltimore County (UMBC)} \\ [25pt]
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge CMSC 691 - Assignment 2 \\
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Ashwinkumar Ganesan}
+
+\date{\normalsize\today}
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Introduction}
+Human centred design of visualization techniques is a broad area. This assignment summarizes six recent papers in this area, providing insight into the design methods, tasks and validation techniques used by the authors.
+
+\section{Design Study Methodology~\cite{sedlmair2012design}}
+The paper discusses the experience of the authors about working on visualization projects. There are multiple design study papers which discuss the process of creating a visual design based but there is no broad consensus on what the overall strategy can be. The paper tries to establish this strategy by proposing a nine point framework. The framework consists of nine stages grouped into three phases. These phases are:
+\begin{enumerate}
+\item \textit{\textbf{Precondition}} contains the stages \textit{learn, winnow \& cast}.
+         	\begin{enumerate}
+	\item {\textbf{Learn}} - Study the literature on the subject.
+	\item {\textbf{Winnow}} - Decide who are the collaborators on the design project.
+	\item {\textbf{Cast}} - Assigning different roles to different collaborators on the project.
+	\end{enumerate}
+\item \textit{\textbf{Core}} contains the stages \textit{discover, design, implement \& deploy}.
+         	\begin{enumerate}
+	\item {\textbf{Discover}} - Define the problem and create an abstract form of the problem.
+	\item {\textbf{Design}} - Abstract the data, define how the data can be encoded and what is the kind of interaction that is going to be present.
+	\item {\textbf{Implement}} - Create a prototype and perform usability analysis of the implemented tool.
+	\item {\textbf{Deploy}} - Release the tool to the customers and get feedback from them about the tool.
+	\end{enumerate}
+\item \textit{\textbf{Analysis}} contains the stages \textit{reflect \& write}.
+         	\begin{enumerate}
+	\item {\textbf{Reflect}} - Use the user feedback to improve the design. Reject parts of the design that did not work as intended and provide guidelines for the future.
+	\item {\textbf{Write}} - Write a paper about the how design process for the abstracted problem.
+	\end{enumerate}
+\end{enumerate}
+
+\section{How Capacity Limits of Attention Influence Information Visualization Effectiveness~\cite{haroz2012capacity}}
+There are limits to how much attention people can give to a certain visualization. Hence because of this limit, the design of a visualization requires changes. The paper discusses a series of tests conducted to measure the effectiveness of various visual elements by the testing the abilities of experimental users. The effectiveness was measured against the user accuracy to performance the task and the response time taken to perform it. The tasks performed were:
+\begin{enumerate}
+\item Finding a known target. The users were asked presented with a square at the center of the screen, were then presented with a stimulus and were then asked to see if target was present or not.
+\item Finding an odd target. The users were shown a set of squares and asked to check if there was an odd square.
+\item Test to check, how the user if affected depending on the complexity of the task. The users were given two stimulii and asked to confirm which of the two had more variety of visual elements.
+\end{enumerate}
+There are a number of guidelines that have been proposed (after looking at the test results):
+\begin{enumerate}
+\item Grouping is helpful for specific tasks where the visual effect is better than raw data.
+\item Provide visual cues to make to easy to for the user to see the pattern.
+\item Do not give too many options in categories.
+\item Assign visual attributes to data points.
+\end{enumerate}
+
+\section{LineUp: Visual Analysis Of Multi-Attribute Rankings~\cite{gratzl2013lineup}}
+Given a collection of data points, rankings are used as a method to arrange items in order based of the value of a single or multiple attributes. Although rankings are are useful to see patterns across a single variable, they can be difficult when:
+\begin{enumerate}
+\item The data points are multivariate.
+\item There are different kinds of rankings to be compared.
+\end{enumerate}
+
+LineUp is a visual representation for rankings which tries to display individual ranks of items, support multiple attributes, supports filtering and missing values \& is scalable. The evaluation has been performed on two datasets i.e. food nutrition data and university rankings. It was evaluated by set of uninformed participants who were told how to use to the tool and given specific tasks to perform using the tool. Their responses and statements during and after the tasks were recorded. They were asked to fill a questionnaire after the tasks had been completed. The major advantage of the tool is the chance to refine weights and mappings, used in the rankings easily. The task of providing information on how much an attribute must change to improve rankings, was not provided.
+
+\section{Nanocubes for real-time exploration of spatiotemporal datasets~\cite{lins2013nanocubes}}
+In real time exploration of large spatiotemporal datasets, viewing patterns which aggregate over all the data requires a lot of processing. One such method is \textit{Data Cubes} aggregation requires all possible combinations of attributes to be pre computed. This increases the amount of space utilized.  The paper discusses \textit{Nanocubes} which constructs data cubes which require lower amount of memory. The method was tested over siz data sets i.e. Twitter data, Airline Commercial Flights History, Call Detail records, Location Based Social networks, Customer call center tickets and a collection of synthetic datasets. 
+
+\section{Explainers: Expert Explorations with Crafted Projections~\cite{gleicher2013explainers}}
+Standard Machine Learning algorithms use the available data to search and discover patterns within them. The paper discusses methods to incorporate the user's knowledge to derive dimensions which can be used to infer patterns. The projection functions crafted from user's knowledge are called explainers. The paper dicusses their effectiveness. The users are allowed to provide their expertise and knowledge using annotations. The method was tested against a range of shakespeare's plays and a collection of 343 18th and 19th century novels. There are a series of questions raised by the author about explainers such as the use of linear vs non linear projections, complexity of the function, its diversity to explain the users annotations and the kind of statistical distributions it might cover.
+
+\section{SoccerStories: A Kick-off for Visual Soccer Analysis~\cite{perin2013soccerstories}}
+SoccerStories is visualization design, created to look at soccer data and comunicate tactics and patterns to others. There are two important tasks that the visualization would aid:
+\begin{enumerate}
+\item Provide a method, to get the overall perspective of a soccer game.
+\item Divide the game into segments, so that it is easy to analyze.
+\end{enumerate}
+
+To enable segmentation of the game, the authors introduce the notion of \textit{phases}. \textit{Phases} are series of actions performed by a team controlling the ball. The \textit{phase} ends when the team loses control of the ball. The visualization is aimed towards a number of users who can be experts such as journalists, people who manage sports information and sports trainers on the soccer teams. The authors conducted two qualitative user studies to validate their design. The first study was with a soccer tactics analyst to check if the person could communicate his tactics effectively. The second study was a followup to look at improvements to \textit{phases} visualization during the game. They found that expert could use the tool with minimal training and users were able to gain insights about games easily. textit{Phases} make to identify interesting plays in the game and compare them against other plays.
+
+\bibliography{ref}{}
+\bibliographystyle{plain}
+
+\end{document}
