@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{Wiki}
+Wikipedia.
+\newblock Accessed: 2014-10-18.
+
+\bibitem{auer2007dbpedia}
+S{\"o}ren Auer, Christian Bizer, Georgi Kobilarov, Jens Lehmann, Richard
+  Cyganiak, and Zachary Ives.
+\newblock {\em Dbpedia: A nucleus for a web of open data}.
+\newblock Springer, 2007.
+
+\bibitem{berners2001semantic}
+Tim Berners-Lee, James Hendler, Ora Lassila, et~al.
+\newblock The semantic web.
+\newblock {\em Scientific american}, 284(5):28--37, 2001.
+
+\end{thebibliography}
