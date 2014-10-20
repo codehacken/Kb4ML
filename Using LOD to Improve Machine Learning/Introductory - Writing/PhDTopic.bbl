@@ -15,4 +15,11 @@ Tim Berners-Lee, James Hendler, Ora Lassila, et~al.
 \newblock The semantic web.
 \newblock {\em Scientific american}, 284(5):28--37, 2001.
 
+\bibitem{hofmann1999probabilistic}
+Thomas Hofmann.
+\newblock Probabilistic latent semantic analysis.
+\newblock In {\em Proceedings of the Fifteenth conference on Uncertainty in
+  artificial intelligence}, pages 289--296. Morgan Kaufmann Publishers Inc.,
+  1999.
+
 \end{thebibliography}

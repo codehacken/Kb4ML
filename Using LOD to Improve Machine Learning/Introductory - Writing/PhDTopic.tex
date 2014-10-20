@@ -73,7 +73,7 @@ Today, The Web is an amalgamation of different kinds of content from websites co
 Also, the knowledge base graph provides other information such as the degree to which the two attributes (entities) are linked and how they linked. The attribute in the training set, can be combined with the data to give us a set of derived attributes which can be additionally used in the method.
 
 \section{Updating the knowledge base}
-As the knowledge base helps to improve the classifier, the test data can be used to update the links between entities in the knowledge base. The test data can be used to update missing values in the knowledge base of the attributes used in the statistical model. This raises important questions such as the data provenance as it may corrupt the knowledge base.
+As the knowledge base helps to improve the classifier, the test data can be used to update the links between entities in the knowledge base. The test data can be used to update missing values in the knowledge base of the attributes used in the statistical model. This raises important questions such as the data provenance as it may corrupt the knowledge base. The other option is to use Probabilistic Latent Semantic Analysis (PLSA) \cite{hofmann1999probabilistic} to find correlated variables in the training / test data.
 
 \section{The Larger Picture}
 \begin{figure}[h]
@@ -82,6 +82,7 @@ As the knowledge base helps to improve the classifier, the test data can be used
 	\caption{\textit{The Mind Framework}}
 	\label{lp}
 \end{figure}
+
 The above diagram [\ref{lp}] shows the larger framework where the knowledge base is used a passive entity by a multiple of classifiers. The framework tries to accomplish the following:
 \begin{enumerate}
 \item A method by which a classifier can use a knowledge base to understand the semantics of the data set and improve classification accuracy.
