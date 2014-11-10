@@ -7,11 +7,10 @@ Standard File Operations.
 
 
 class FileReader:
-    def __init__(self):
-        col_var = {}
-        data = {}
+    def __init__(self, column_var=None):
+        self.col_var = column_var
 
-    def read_col_var_file(self, filename):
+    def read_col_var_file(self, filename, separator=","):
         """
         FILE DESIGN:
         variable name list at the start of the file.
@@ -21,5 +20,29 @@ class FileReader:
         :return: No return value.
         """
         with open(filename, "r") as file_ptr:
-            col_var_list = file_ptr.readline().split("\n")[0]
-            print col_var_list
+            self.col_var = file_ptr.readline().split("\n")[0].split(separator)
+
+    def read_data(self, filename, separator=","):
+        """
+        FILE DESIGN:
+        The file is a CSV file which contains data in the following format.
+        <val1>,...,<valN>
+
+        :param filename:
+        :return: data map.
+                 [Row Y{col(x): val(x,y)}]
+        """
+        file_data = []
+
+        with open(filename, "r") as file_ptr:
+            for line in file_ptr:
+                col_val_map = {}
+                col_val_list = line.split("\n")[0].split(separator)
+
+                # Assign the values to each column.
+                for idx, col_val in enumerate(col_val_list):
+                    col_val_map[self.col_var[idx]] = col_val
+
+                file_data.append(col_val_map)
+
+        return file_data

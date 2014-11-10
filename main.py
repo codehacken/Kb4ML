@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 __author__ = 'ashwin'
 __email__ = 'gashwin1@umbc.edu'
 
@@ -10,4 +12,11 @@ HYPOTHESIS: Can Knowledge base information (in this case the semantic web), impr
             between variables is known?
 """
 
-from src.
+from lib.stdops.fileops import FileReader
+
+file_reader = FileReader()
+file_reader.read_col_var_file("dataset/winequality/winesquality.var")
+
+# Get the data in the file.
+file_data = file_reader.read_data("dataset/winequality/winequality.csv", ";")
+
