@@ -22,4 +22,5 @@ file_reader.read_col_var_file("dataset/adult_data/adult.var")
 file_data = file_reader.read_data("dataset/adult_data/adult.data.temp", ",", ['$continuous$'])
 
 naive_b = NaiveBayes(file_reader.col_var, file_reader.class_var)
-#naive_b.train_model(file_data)
+naive_b.train_model(file_data)
+
