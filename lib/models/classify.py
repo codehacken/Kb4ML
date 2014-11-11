@@ -30,11 +30,10 @@ class NaiveBayes:
         for class_category in var_names[class_var_name]:
             self.result_freq[class_category] = 0
 
-    @staticmethod
-    def train_model(training_data):
+    def train_model(self, training_data):
         # Create a counter for each combination for a specific class value.
         # Probability is calculated as a n(X1) / n(S).
         for data_point in training_data:
             for data_point_val in data_point:
-                #self.factor_freq[data_point_val][data_point[data_point_val]][data_point[]]
+                self.factor_freq[data_point_val][data_point[data_point_val]][data_point[]]
                 print data_point_val
