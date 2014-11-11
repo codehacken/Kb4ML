@@ -72,3 +72,10 @@ THREAD 6
     b. The other option is to, possibly add human-in the loop at some time after the KB has given its answers to bias the answers towards the human's knowledge.
 5. If the table only has numbers or continuous variables, how can they be disambiguiated? What is the semantic relations when only numbers are available?
 
+INTERESTING METHODS
+===================
+
+1. KBANN - KB Assisted Neural Network.
+2. Using Apriori Algorithm for associate rule mining.
+3. Using FOIL to generate new rules based on FOL (First-Order-Logic)
+
