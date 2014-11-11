@@ -1,0 +1,74 @@
+NOTES
+=====
+
+Improving Machine Learning algorithms using Knowledge Bases (KB). KB can be a generic concept. Examples are constructed using
+Semantic Web as KB.
+
+QUESTIONS
+=========
+MACHINE LEARNING (ML)
+=====================
+
+THREAD 1
+========
+
+A. NAIVE BAYES (NB)
+===================
+
+1. How to work with continuous variables?
+2. Discretization methods for continous variables.
+3. Does cross product improve accuracy of naive bayes?
+4. Does feature elimination improve accuracy based on semantic relations from KB?
+5. Feature addition based on relations from semantic web? (Suggest new variables).
+6. Using discrete range information to create categories in continuous variables from the KB.
+7. What is the impact of wrong information retrieved from the KB on the Naive Bayes? 
+
+B. Support Vector Machines (SVM)
+================================
+
+C. Decision Trees (DT)
+======================
+
+D. K-Means (and std.) Clustering
+================================
+
+THREAD 2
+========
+
+1. Construct Intermediate form (IF) graph from KB to inform algorithms.
+2. Think about metadata of the KB to be used in the Ontology graph.
+
+THREAD 3
+========
+
+1. Cognitive Modeling using society of the mind and cognitive models to interconnect KB with ML.
+
+THREAD 4
+========
+
+1. Using the table found to add information and semantic relations to the KB.
+
+THREAD 5
+========
+
+1. Using KB as an intermediate form to communicate variable information between different types of ML algorithms.
+   E.g. Naive Bayes(NB) to inform SVM.
+
+
+KNOWLEDGE BASE (KB)
+===================
+
+THREAD 6
+========
+
+1. Should we assume that the entity searching happens with high precision in the KB, so that we get correct semantics for the attributes in the tables on which are running machine learning algorithms?
+2. Can we consider probabilistic results from the KB for the purpose e.g. using it with Naive Bayes?
+3. If complete automation of the system is possible & if so what are the assumption we can / should make for this purpose?
+4. Can we have a human in the loop method to improve the disambiguation?
+    This too can be introduced in multiple ways:
+    a. Provide annotation of the data set, prior to executing any algorithms on the data set. This is similar to what we would when a machine learning expert gets data from someone, to create algorithms so that the person can get an expected output. There is some background information on the data set which the machine learning expert tends to use, couple with his own knowledge of the domain. This process is:
+        Expert Advice = Domain Knowledge + Data information (metadata?) got from the person generating it.
+        We can provide a generic way to encode this metadata to provide better context to the KB (similar to a machine learning expert asking questions).
+    b. The other option is to, possibly add human-in the loop at some time after the KB has given its answers to bias the answers towards the human's knowledge.
+5. If the table only has numbers or continuous variables, how can they be disambiguiated? What is the semantic relations when only numbers are available?
+
