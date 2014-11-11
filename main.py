@@ -19,4 +19,3 @@ file_reader.read_col_var_file("dataset/winequality/winesquality.var")
 
 # Get the data in the file.
 file_data = file_reader.read_data("dataset/winequality/winequality.csv", ";")
-

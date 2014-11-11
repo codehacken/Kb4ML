@@ -14,7 +14,9 @@ class FileReader:
         """
         FILE DESIGN:
         variable name list at the start of the file.
-        <var1>,<var 2>,<var 3>
+        <var1>:<value1>,<value2>,
+        <var 2>:
+        <var 3>:
 
         :param filename: Name of the file which contains the list of variables.
         :return: No return value.
