@@ -13,9 +13,13 @@ HYPOTHESIS: Can Knowledge base information (in this case the semantic web), impr
 """
 
 from lib.stdops.fileops import FileReader
+from lib.models.classify import NaiveBayes
 
-file_reader = FileReader()
-file_reader.read_col_var_file("dataset/winequality/winesquality.var")
+file_reader = FileReader(class_var_name="Classify")
+file_reader.read_col_var_file("dataset/adult_data/adult.var")
 
 # Get the data in the file.
-file_data = file_reader.read_data("dataset/winequality/winequality.csv", ";")
+file_data = file_reader.read_data("dataset/adult_data/adult.data.temp", ",", ['$continuous$'])
+
+naive_b = NaiveBayes(file_reader.col_var, file_reader.class_var)
+#naive_b.train_model(file_data)
