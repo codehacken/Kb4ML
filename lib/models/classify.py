@@ -11,11 +11,12 @@ from lib.stdops.fileops import FileReader
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.naive_bayes import BernoulliNB
 import numpy as np
+from sklearn import metrics
 
 
 class NaiveBayes:
     def __init__(self):
-        self.feature_vector = None
+        self.feature_vector = DictVectorizer(sparse=False)
         self.class_vector = {}
         self.nb_model = BernoulliNB()
         self.class_var = None
@@ -41,7 +42,7 @@ class NaiveBayes:
 
         return np.array(transform_vector)
 
-    def vectorize_data(self, var_file_name, data_file_name, data_sep, var_filter, class_name="Classify"):
+    def vectorize_data(self, var_file_name, data_file_name, data_sep, var_filter, if_train=True, class_name="Classify"):
         file_reader = FileReader(class_var_name=class_name)
         file_reader.read_col_var_file(var_file_name, data_separator=data_sep)
 
@@ -49,8 +50,10 @@ class NaiveBayes:
         [file_feature_data, file_class_result] = file_reader.read_data(data_file_name, data_sep, var_filter)
 
         # Vectorize the training data.
-        self.feature_vector = DictVectorizer(sparse=False)
-        transformed_feature_data = self.feature_vector.fit_transform(file_feature_data)
+        if if_train:
+            transformed_feature_data = self.feature_vector.fit_transform(file_feature_data)
+        else:
+            transformed_feature_data = self.feature_vector.transform(file_feature_data)
 
         # Vectorize the training data results (that is the class results applied to the same set)
         transformed_class_data = self.data2vector(file_class_result)
@@ -59,6 +62,13 @@ class NaiveBayes:
 
     def train_model(self, ft_data, cl_data):
         return self.nb_model.fit(ft_data, cl_data)
+
+    def predict(self, ft_data):
+        return self.nb_model.predict(ft_data)
+
+    @staticmethod
+    def get_accuracy_score(train_cl_real, test_cl_predict):
+        return metrics.accuracy_score(train_cl_real, test_cl_predict)
 
 """
 Sample Code:

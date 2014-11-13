@@ -16,13 +16,20 @@ from lib.models.classify import NaiveBayes
 
 naive_bayes = NaiveBayes()
 
-# Vectorize the data for Naive Bayes.
+# Vectorize the training data for Naive Bayes.
 [train_ft_data, train_cl_data] = naive_bayes.vectorize_data("dataset/adult_data/adult.var",
-                                                            "dataset/adult_data/adult.data.temp",
+                                                            "dataset/adult_data/adult.data",
                                                             ",", ['$continuous$'])
 
 # Train the model.
 model = naive_bayes.train_model(train_ft_data, train_cl_data)
 
-print model.class_count_
-print model.feature_count_
+# Vectorize the test data.
+[test_ft_data, test_cl_data] = naive_bayes.vectorize_data("dataset/adult_data/adult.var",
+                                                          "dataset/adult_data/adult.test",
+                                                          ",", ['$continuous$'], False)
+
+# Test the data.
+test_results = model.predict(test_ft_data)
+score = naive_bayes.get_accuracy_score(test_cl_data, test_results)
+print score
