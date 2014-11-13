@@ -62,7 +62,8 @@ class FileReader:
                     filtered_var_idx.append(idx)
 
         # read and filter the data.
-        file_feature_data = []; file_class_result = []
+        file_feature_data = []
+        file_class_result = []
 
         with open(filename, "r") as file_ptr:
             for line in file_ptr:
@@ -75,6 +76,6 @@ class FileReader:
                         col_val_map[self.idx2var[idx]] = col_val_list[idx]
 
                 file_feature_data.append(col_val_map)
-                file_class_result.append(col_val_list[class_idx])
+                file_class_result.append({self.class_var: col_val_list[class_idx]})
 
         return [file_feature_data, file_class_result]

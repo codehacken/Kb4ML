@@ -9,12 +9,37 @@ Implement Standard classifiers.
 
 from lib.stdops.fileops import FileReader
 from sklearn.feature_extraction import DictVectorizer
+from sklearn.naive_bayes import BernoulliNB
+import numpy as np
 
 
 class NaiveBayes:
     def __init__(self):
         self.feature_vector = None
-        self.class_vector = None
+        self.class_vector = {}
+        self.nb_model = BernoulliNB()
+        self.class_var = None
+
+    # This function converts a set of class variable values to integer eq.
+    # This is can then be used as the class ID.
+    def data2vector(self, class_data, reset=False):
+        if reset:
+            self.class_vector = {}
+
+        # The final vector of integer for the class variables.
+        transform_vector = []
+
+        # The conversion is a simple one taking values from 0 to
+        # x where x+1 type of values are there for the class variable.
+        idx = 0
+        for data_point in class_data:
+            if data_point[data_point.keys()[0]] not in self.class_vector:
+                self.class_vector[data_point[data_point.keys()[0]]] = idx
+                idx += 1
+
+            transform_vector.append(self.class_vector[data_point[data_point.keys()[0]]])
+
+        return np.array(transform_vector)
 
     def vectorize_data(self, var_file_name, data_file_name, data_sep, var_filter, class_name="Classify"):
         file_reader = FileReader(class_var_name=class_name)
@@ -23,11 +48,17 @@ class NaiveBayes:
         # Get the data in the file.
         [file_feature_data, file_class_result] = file_reader.read_data(data_file_name, data_sep, var_filter)
 
+        # Vectorize the training data.
         self.feature_vector = DictVectorizer(sparse=False)
         transformed_feature_data = self.feature_vector.fit_transform(file_feature_data)
 
-        return transformed_feature_data
+        # Vectorize the training data results (that is the class results applied to the same set)
+        transformed_class_data = self.data2vector(file_class_result)
 
+        return [transformed_feature_data, transformed_class_data]
+
+    def train_model(self, ft_data, cl_data):
+        return self.nb_model.fit(ft_data, cl_data)
 
 """
 Sample Code:

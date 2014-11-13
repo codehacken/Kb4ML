@@ -17,8 +17,12 @@ from lib.models.classify import NaiveBayes
 naive_bayes = NaiveBayes()
 
 # Vectorize the data for Naive Bayes.
-naive_bayes.vectorize_data("dataset/adult_data/adult.var",
-                           "dataset/adult_data/adult.data.temp",
-                           ",", ['$continuous$'])
+[train_ft_data, train_cl_data] = naive_bayes.vectorize_data("dataset/adult_data/adult.var",
+                                                            "dataset/adult_data/adult.data.temp",
+                                                            ",", ['$continuous$'])
 
-print naive_bayes.feature_vector.get_feature_names()
+# Train the model.
+model = naive_bayes.train_model(train_ft_data, train_cl_data)
+
+print model.class_count_
+print model.feature_count_
