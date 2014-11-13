@@ -12,6 +12,12 @@ class FileReader:
         self.idx2var = idx2var
         self.class_var = class_var_name
 
+        # Dispatch table to convert words to idx positions.
+        self.class_pos = {
+            'last': lambda: len(self.col_var) - 1,
+            'first': 0
+        }
+
     def read_col_var_file(self, filename, var_separator=":", data_separator=","):
         """
         FILE DESIGN:
@@ -29,7 +35,7 @@ class FileReader:
                 self.col_var[var_list[0]] = var_list[1].split(data_separator)
                 self.idx2var.append(var_list[0])
 
-    def read_data(self, filename, separator=",", var_filter=None):
+    def read_data(self, filename, separator=",", var_filter=None, class_result_pos="last"):
         """
         FILE DESIGN:
         The file is a CSV file which contains data in the following format.
@@ -44,6 +50,11 @@ class FileReader:
         # 2. filtered_var_idx is the filtered variable list that contains only the variables that
         #    are to be filtered out.
 
+        if type(class_result_pos) == str:
+            class_idx = self.class_pos[class_result_pos]()
+        elif type(class_result_pos) == int:
+            class_idx = class_result_pos
+
         filtered_var_idx = []
         for idx, var in enumerate(self.idx2var):
             for filter_item in var_filter:
@@ -51,7 +62,7 @@ class FileReader:
                     filtered_var_idx.append(idx)
 
         # read and filter the data.
-        file_data = []
+        file_feature_data = []; file_class_result = []
 
         with open(filename, "r") as file_ptr:
             for line in file_ptr:
@@ -59,10 +70,11 @@ class FileReader:
                 col_val_list = line.split("\n")[0].split(separator)
 
                 # Assign the values to each column.
-                for idx, col_val in enumerate(col_val_list):
+                for idx in range(0, len(col_val_list) - 1):
                     if not(filtered_var_idx.__contains__(idx)):
-                        col_val_map[self.idx2var[idx]] = col_val
+                        col_val_map[self.idx2var[idx]] = col_val_list[idx]
 
-                file_data.append(col_val_map)
+                file_feature_data.append(col_val_map)
+                file_class_result.append(col_val_list[class_idx])
 
-        return file_data
+        return [file_feature_data, file_class_result]

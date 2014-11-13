@@ -12,15 +12,13 @@ HYPOTHESIS: Can Knowledge base information (in this case the semantic web), impr
             between variables is known?
 """
 
-from lib.stdops.fileops import FileReader
 from lib.models.classify import NaiveBayes
 
-file_reader = FileReader(class_var_name="Classify")
-file_reader.read_col_var_file("dataset/adult_data/adult.var")
+naive_bayes = NaiveBayes()
 
-# Get the data in the file.
-file_data = file_reader.read_data("dataset/adult_data/adult.data.temp", ",", ['$continuous$'])
+# Vectorize the data for Naive Bayes.
+naive_bayes.vectorize_data("dataset/adult_data/adult.var",
+                           "dataset/adult_data/adult.data.temp",
+                           ",", ['$continuous$'])
 
-naive_b = NaiveBayes(file_reader.col_var, file_reader.class_var)
-naive_b.train_model(file_data)
-
+print naive_bayes.feature_vector.get_feature_names()
