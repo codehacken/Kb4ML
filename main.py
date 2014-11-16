@@ -21,8 +21,8 @@ elim_var = ['$continuous$']
 class_name = "Classify"
 
 # Training and Test data files.
-train_f_name = "dataset/adult_data/adult.data.temp"
-test_f_name = "dataset/adult_data/adult.test.temp"
+train_f_name = "dataset/adult_data/adult.data"
+test_f_name = "dataset/adult_data/adult.test"
 
 # File with column names and variable types.
 var_f_name = "dataset/adult_data/adult.var"
@@ -47,6 +47,12 @@ score = test.test_naive_bayes(train_file_reader, test_file_reader)
 print score
 
 # Test Naive Bayes with cross product.
-cross_prod_columns = [['education', 'marital-status'], ['sex', 'race']]
-score = test.test_nb_cross_product(train_file_reader, test_file_reader, cross_prod_columns)
-print score
+cross_prod_list = [[['workclass', 'education', 'marital-status']],
+                   [['education', 'marital-status']],
+                   [['marital-status', 'relationship']],
+                   [['education', 'marital-status', 'relationship']]]
+
+for cross_prod_columns in cross_prod_list:
+    score = test.test_nb_cross_product(train_file_reader, test_file_reader, cross_prod_columns)
+    print cross_prod_columns
+    print score
