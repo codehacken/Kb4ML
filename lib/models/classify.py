@@ -42,13 +42,7 @@ class NaiveBayes:
 
         return np.array(transform_vector)
 
-    def vectorize_data(self, var_file_name, data_file_name, data_sep, var_filter, if_train=True, class_name="Classify"):
-        file_reader = FileReader(class_var_name=class_name)
-        file_reader.read_col_var_file(var_file_name, data_separator=data_sep)
-
-        # Get the data in the file.
-        [file_feature_data, file_class_result] = file_reader.read_data(data_file_name, data_sep, var_filter)
-
+    def vectorize_data(self, file_feature_data, file_class_result, if_train=True):
         # Vectorize the training data.
         if if_train:
             transformed_feature_data = self.feature_vector.fit_transform(file_feature_data)

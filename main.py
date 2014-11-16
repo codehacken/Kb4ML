@@ -12,24 +12,41 @@ HYPOTHESIS: Can Knowledge base information (in this case the semantic web), impr
             between variables is known?
 """
 
-from lib.models.classify import NaiveBayes
+from lib.stdops.fileops import FileReader
+import lib.test as test
 
-naive_bayes = NaiveBayes()
+# Preliminaries.
+data_sep = ","
+elim_var = ['$continuous$']
+class_name = "Classify"
 
-# Vectorize the training data for Naive Bayes.
-[train_ft_data, train_cl_data] = naive_bayes.vectorize_data("dataset/adult_data/adult.var",
-                                                            "dataset/adult_data/adult.data",
-                                                            ",", ['$continuous$'])
+# Training and Test data files.
+train_f_name = "dataset/adult_data/adult.data.temp"
+test_f_name = "dataset/adult_data/adult.test.temp"
 
-# Train the model.
-model = naive_bayes.train_model(train_ft_data, train_cl_data)
+# File with column names and variable types.
+var_f_name = "dataset/adult_data/adult.var"
 
-# Vectorize the test data.
-[test_ft_data, test_cl_data] = naive_bayes.vectorize_data("dataset/adult_data/adult.var",
-                                                          "dataset/adult_data/adult.test",
-                                                          ",", ['$continuous$'], False)
+# Create File Reader to read the data from a file and process it.
+# This section the file reader only extracts the column values.
+train_file_reader = FileReader(class_var_name=class_name)
+train_file_reader.read_col_var_file(var_f_name, data_separator=data_sep)
 
-# Test the data.
-test_results = model.predict(test_ft_data)
-score = naive_bayes.get_accuracy_score(test_cl_data, test_results)
+# Get the data in the file.
+train_file_reader.read_data(train_f_name, data_sep, elim_var)
+
+# File Reader for test data set.
+test_file_reader = FileReader(class_var_name=class_name)
+test_file_reader.read_col_var_file(var_f_name, data_separator=data_sep)
+
+# Get the data in the file.
+test_file_reader.read_data(test_f_name, data_sep, elim_var)
+
+# Test Naive Bayes.
+score = test.test_naive_bayes(train_file_reader, test_file_reader)
+print score
+
+# Test Naive Bayes with cross product.
+cross_prod_columns = [['education', 'marital-status'], ['sex', 'race']]
+score = test.test_nb_cross_product(train_file_reader, test_file_reader, cross_prod_columns)
 print score

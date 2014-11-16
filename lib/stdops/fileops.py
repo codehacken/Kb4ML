@@ -18,6 +18,10 @@ class FileReader:
             'first': 0
         }
 
+        # Store the file data.
+        self.file_feature_data = None
+        self.file_class_result = None
+
     def read_col_var_file(self, filename, var_separator=":", data_separator=","):
         """
         FILE DESIGN:
@@ -78,4 +82,44 @@ class FileReader:
                 file_feature_data.append(col_val_map)
                 file_class_result.append({self.class_var: col_val_list[class_idx]})
 
-        return [file_feature_data, file_class_result]
+        self.file_feature_data = file_feature_data
+        self.file_class_result = file_class_result
+
+    # cross_col_list contains the list of column names which need to be concatenated
+    # so that a cross product can be calculated.
+
+    # The current cross product method works mainly for discrete data.
+    def cross_prod_var(self, file_feature_data, cross_col_list):
+        # Construct the set of cross product columns.
+        # cross_product_col is the name of the new cross product column (AxB).
+        cross_product_col_list = []
+        cross_prod_col_idx = []
+
+        for col_list in cross_col_list:
+            cross_product_col = "_"
+            for col in col_list:
+                cross_product_col += col + "_"
+                cross_prod_col_idx.append(self.idx2var.index(col))
+            cross_product_col_list.append(cross_product_col)
+
+        cross_ft_data = []
+        for data_point in file_feature_data:
+            # Construct the cross product variables.
+            new_data_point = {}
+            for idx, col_list in enumerate(cross_col_list):
+                data_point_cross_prod = "_"
+                for col in col_list:
+                    data_point_cross_prod += data_point[col] + "_"
+
+                # Add the cross product to the new data point.
+                new_data_point[cross_product_col_list[idx]] = data_point_cross_prod
+
+            # Add the other variables.
+            for var in data_point:
+                if self.idx2var.index(var) not in cross_prod_col_idx:
+                    new_data_point[var] = data_point[var]
+
+            # Add the new data point to the data set.
+            cross_ft_data.append(new_data_point)
+
+        return cross_ft_data
