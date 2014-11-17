@@ -7,7 +7,6 @@ Implement Standard classifiers.
 # Implementing the std. Naive Bayes Algorithm.
 # Classification is based on Maximum-Likelihood for selecting the final class.
 
-from lib.stdops.fileops import FileReader
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.naive_bayes import BernoulliNB
 import numpy as np
