@@ -7,9 +7,9 @@ __email__ = 'gashwin1@umbc.edu'
 This project tries to look at methods to unify knowledge bases with Machine
 Learning Algorithms.
 
-HYPOTHESIS: Can Knowledge base information (in this case the semantic web), improve
-            the performance of Machine Learning Algorithms, given that the relation
-            between variables is known?
+HYPOTHESIS: Can Knowledge base information (in this case the semantic web),
+            improve the performance of Machine Learning Algorithms, given that
+            the relation between variables is known?
 """
 
 from lib.stdops.fileops import FileReader
@@ -53,6 +53,7 @@ cross_prod_list = [[['workclass', 'education', 'marital-status']],
                    [['education', 'marital-status', 'relationship']]]
 
 for cross_prod_columns in cross_prod_list:
-    score = test.test_nb_cross_product(train_file_reader, test_file_reader, cross_prod_columns)
+    score = test.test_nb_cross_product(train_file_reader, test_file_reader,
+                                       cross_prod_columns)
     print cross_prod_columns
     print score
