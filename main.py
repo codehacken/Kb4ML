@@ -46,6 +46,17 @@ test_file_reader.read_data(test_f_name, data_sep, elim_var)
 score = test.test_naive_bayes(train_file_reader, test_file_reader)
 print score
 
+"""
+This is the test using Naive Bayes.
+The cross product is applied for the following attribute combinations:
+a. workclass, education, marital-status
+b. education, marital-status
+c. marital-status, relationship
+d. education, marital-status, relationship.
+
+This method tries to apply cross product to attributes that are not likely
+to be conditionally independent.
+"""
 # Test Naive Bayes with cross product.
 cross_prod_list = [[['workclass', 'education', 'marital-status']],
                    [['education', 'marital-status']],
@@ -57,3 +68,8 @@ for cross_prod_columns in cross_prod_list:
                                        cross_prod_columns)
     print cross_prod_columns
     print score
+
+"""
+This is a test using a modified 'RandomForest' method.
+"""
+# Test Random Forest implementation.
