@@ -1,7 +1,7 @@
-PHD WORK
+Kb4ML
 ========
 
-All PhD Work including papers and proposals.
+Constructing Knowledge Assisted Machine Learning Algorithms.
 
 AUTHOR
 ======
