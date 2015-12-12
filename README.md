@@ -11,7 +11,7 @@ PhD Student,
 Dept. Of Computer Science & Electrical Engg.,
 UMBC
 
-PROJECT 1
+PROJECT
 =========
 
 Using Linked Open Data to improve Machine Learning Algorithms.
