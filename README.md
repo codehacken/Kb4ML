@@ -1,9 +1,9 @@
-Kb4ML
+KB4ML
 ========
 
 Constructing Knowledge Assisted Machine Learning Algorithms.
 
-AUTHOR
+Author
 ======
 
 Ashwinkumar Ganesan
@@ -11,8 +11,8 @@ PhD Student,
 Dept. Of Computer Science & Electrical Engg.,
 UMBC
 
-PROJECT
-=========
+Project Description
+===================
 
 Using Linked Open Data to improve Machine Learning Algorithms.
 
